@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOP Product Display</title>
+    <link rel="stylesheet" href="style8.css">
+</head>
+<body>
+
+<header>
+    <h1>OOP Products</h1>
+</header>
+
+<div class="gallery" id="items"></div>
+
+<script>
+class Product {
+    constructor(name, price) {
+        this.name = name;
+        this.price = price;
+    }
+    render() {
+        return `
+            <div class="product">
+                <h2>${this.name}</h2>
+                <p class="price">₹${this.price}</p>
+            </div>
+        `;
+    }
+}
+
+class Book extends Product {
+    constructor(name, price, author) {
+        super(name, price);
+        this.author = author;
+    }
+    render() {
+        return `
+            <div class="product">
+                <h2>${this.name}</h2>
+                <p>Author: ${this.author}</p>
+                <p class="price">₹${this.price}</p>
+            </div>
+        `;
+    }
+}
+
+const items = [
+    new Product("Wallet", 399),
+    new Book("JavaScript Guide", 499, "Mark Smith"),
+    new Product("Headphones", 899)
+];
+
+document.getElementById("items").innerHTML =
+    items.map(i => i.render()).join("");
+</script>
+
+</body>
+</html>
